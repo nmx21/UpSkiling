@@ -27,6 +27,12 @@ public class ArrayListTest {
         Assert.assertEquals("D",arrayList.get(2));
     }
 
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testAddExp() {
+        ArrayList arrayList = new ArrayList();
+        arrayList.add("Z",100);
+    }
+
     @Test
     public void remove() {
         ArrayList arrayList = new ArrayList();
@@ -54,6 +60,12 @@ public class ArrayListTest {
         Assert.assertEquals("C",arrayList.get(2));
     }
 
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void getExp() {
+        ArrayList arrayList = new ArrayList();
+        arrayList.get(1);
+    }
+
     @Test
     public void set() {
         ArrayList arrayList = new ArrayList();
@@ -65,6 +77,12 @@ public class ArrayListTest {
         Assert.assertEquals("F",arrayList.get(1));
         Assert.assertEquals("C",arrayList.get(2));
 
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void setExp() {
+        ArrayList arrayList = new ArrayList();
+        arrayList.set("E",5);
     }
 
     @Test
