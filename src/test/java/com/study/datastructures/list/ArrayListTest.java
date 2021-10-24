@@ -3,6 +3,7 @@ package com.study.datastructures.list;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.jupiter.api.DisplayName;
 
 
 public class ArrayListTest {
@@ -13,7 +14,14 @@ public class ArrayListTest {
         arrayList.add("A");
         arrayList.add("B");
         arrayList.add("C");
-        Assert.assertEquals(3,arrayList.size());
+        Assert.assertEquals(3, arrayList.size());
+        ///////
+        arrayList.clear();
+        long startTime = System.nanoTime();
+        for (int i = 0; i < 100000; i++) {
+            arrayList.add(i);
+        }
+        System.out.println((System.nanoTime() - startTime) / 1000000000.0);
     }
 
     @Test
@@ -22,15 +30,15 @@ public class ArrayListTest {
         arrayList.add("A");
         arrayList.add("B");
         arrayList.add("C");
-        arrayList.add("D",2);
-        Assert.assertEquals(4,arrayList.size());
-        Assert.assertEquals("D",arrayList.get(2));
+        arrayList.add("D", 2);
+        Assert.assertEquals(4, arrayList.size());
+        Assert.assertEquals("D", arrayList.get(2));
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void testAddExp() {
         ArrayList arrayList = new ArrayList();
-        arrayList.add("Z",100);
+        arrayList.add("Z", 100);
     }
 
     @Test
@@ -40,8 +48,8 @@ public class ArrayListTest {
         arrayList.add("B");
         arrayList.add("C");
         arrayList.remove(1);
-        Assert.assertEquals(2,arrayList.size());
-        Assert.assertEquals("C",arrayList.get(1));
+        Assert.assertEquals(2, arrayList.size());
+        Assert.assertEquals("C", arrayList.get(1));
 
     }
 
@@ -57,7 +65,7 @@ public class ArrayListTest {
         arrayList.add("A");
         arrayList.add("B");
         arrayList.add("C");
-        Assert.assertEquals("C",arrayList.get(2));
+        Assert.assertEquals("C", arrayList.get(2));
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
@@ -72,17 +80,17 @@ public class ArrayListTest {
         arrayList.add("A");
         arrayList.add("B");
         arrayList.add("C");
-        arrayList.set("F",1);
-        Assert.assertEquals("A",arrayList.get(0));
-        Assert.assertEquals("F",arrayList.get(1));
-        Assert.assertEquals("C",arrayList.get(2));
+        arrayList.set("F", 1);
+        Assert.assertEquals("A", arrayList.get(0));
+        Assert.assertEquals("F", arrayList.get(1));
+        Assert.assertEquals("C", arrayList.get(2));
 
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void setExp() {
         ArrayList arrayList = new ArrayList();
-        arrayList.set("E",5);
+        arrayList.set("E", 5);
     }
 
     @Test
@@ -103,9 +111,9 @@ public class ArrayListTest {
         arrayList.add("C");
         arrayList.add("C");
         arrayList.add("C");
-        Assert.assertEquals(15,arrayList.size());
+        Assert.assertEquals(15, arrayList.size());
         arrayList.clear();
-        Assert.assertEquals(0,arrayList.size());
+        Assert.assertEquals(0, arrayList.size());
     }
 
     @Test
@@ -126,7 +134,7 @@ public class ArrayListTest {
         arrayList.add("C");
         arrayList.add("C");
         arrayList.add("C");
-        Assert.assertEquals(15,arrayList.size());
+        Assert.assertEquals(15, arrayList.size());
     }
 
     @Test
@@ -166,8 +174,8 @@ public class ArrayListTest {
         arrayList.add("A");
         arrayList.add("B");
         arrayList.add("C");
-        Assert.assertEquals(2,arrayList.indexOf("C"));
-        Assert.assertEquals(-1,arrayList.indexOf("F"));
+        Assert.assertEquals(2, arrayList.indexOf("C"));
+        Assert.assertEquals(-1, arrayList.indexOf("F"));
     }
 
     @Test
@@ -179,7 +187,7 @@ public class ArrayListTest {
         arrayList.add("F");
         arrayList.add("B");
         arrayList.add("H");
-        Assert.assertEquals(4,arrayList.lastIndexOf("B"));
+        Assert.assertEquals(4, arrayList.lastIndexOf("B"));
     }
 
     @Test
@@ -188,6 +196,6 @@ public class ArrayListTest {
         arrayList.add("A");
         arrayList.add("B");
         arrayList.add("C");
-        Assert.assertEquals("[A,B,C]",arrayList.toString());
+        Assert.assertEquals("[A,B,C]", arrayList.toString());
     }
 }

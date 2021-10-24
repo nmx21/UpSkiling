@@ -6,8 +6,8 @@ public class ArrayList implements List {
     private int pointer = 0;
 
     public void add(Object value) {
-        if(pointer >= array.length){
-            resize(array.length*2);
+        if (pointer >= array.length) {
+            resize(array.length * 2);
         }
         array[pointer++] = value;
     }
@@ -16,11 +16,11 @@ public class ArrayList implements List {
         if (index >= pointer || index < 0) {
             throw new IndexOutOfBoundsException("ADD. Index should be between 0 and " + pointer + ". You entered the index value " + index + ". Sorry...");
         }
-        if(pointer >= array.length){
-            resize(array.length*2);
+        if (pointer >= array.length) {
+            resize(array.length * 2);
         }
-        for (int i = index; i < pointer; i++){
-            array[i+1] = array[i];
+        for (int i = index; i < pointer; i++) {
+            array[i + 1] = array[i];
         }
         pointer++;
         array[index] = value;
@@ -28,35 +28,35 @@ public class ArrayList implements List {
 
     public Object remove(int index) {
         if (index >= pointer || index < 0) {
-            throw new IndexOutOfBoundsException("REMOVE. Index should be between 0 and "+(pointer-1)+". You entered the index value "+index+". Sorry...");
+            throw new IndexOutOfBoundsException("REMOVE. Index should be between 0 and " + (pointer - 1) + ". You entered the index value " + index + ". Sorry...");
         }
-        for (int i = index; i < pointer-1; i++){
-            array[i] = array[i+1];
+        for (int i = index; i < pointer - 1; i++) {
+            array[i] = array[i + 1];
         }
         pointer--;
-        resize(array.length-1);
+        resize(array.length - 1);
         return array;
     }
 
     public Object get(int index) {
         if (index >= pointer || index < 0) {
-            throw new IndexOutOfBoundsException("GET. Index should be between 0 and "+(pointer-1)+". You entered the index value "+index+". Sorry...");
+            throw new IndexOutOfBoundsException("GET. Index should be between 0 and " + (pointer - 1) + ". You entered the index value " + index + ". Sorry...");
         }
         return array[index];
     }
 
     public Object set(Object value, int index) {
         if (index >= pointer || index < 0) {
-            throw new IndexOutOfBoundsException("SET. Index should be between 0 and "+(pointer-1)+". You entered the index value "+index+". Sorry...");
+            throw new IndexOutOfBoundsException("SET. Index should be between 0 and " + (pointer - 1) + ". You entered the index value " + index + ". Sorry...");
         }
         return array[index] = value;
     }
 
     public void clear() {
-        for(int i = pointer-1; i > 0; i--){
+        for (int i = pointer - 1; i > 0; i--) {
             array[i] = null;
         }
-        pointer=0;
+        pointer = 0;
         resize(INIT_SIZE);
     }
 
@@ -69,9 +69,9 @@ public class ArrayList implements List {
     }
 
     public boolean contains(Object value) {
-        if(pointer > 0){
+        if (pointer > 0) {
             for (int i = 0; i < pointer; i++) {
-                if( array[i].equals(value) ){
+                if (array[i].equals(value)) {
                     return true;
                 }
             }
@@ -80,9 +80,9 @@ public class ArrayList implements List {
     }
 
     public int indexOf(Object value) {
-        if(pointer > 0){
+        if (pointer > 0) {
             for (int i = 0; i < pointer; i++) {
-                if( array[i].equals(value) ){
+                if (array[i].equals(value)) {
                     return i;
                 }
             }
@@ -92,10 +92,10 @@ public class ArrayList implements List {
 
     public int lastIndexOf(Object value) {
         int marker = -1;
-        if( pointer > 0 ){
-            for ( int i = 0; i < pointer; i++ ) {
-                if(array[i].equals(value)){
-                    marker=  i;
+        if (pointer > 0) {
+            for (int i = 0; i < pointer; i++) {
+                if (array[i].equals(value)) {
+                    marker = i;
                 }
             }
         }
@@ -103,15 +103,15 @@ public class ArrayList implements List {
     }
 
     @Override
-    public String toString(){
-        String str="[";
+    public String toString() {
+        String str = "[";
         for (int i = 0; i < pointer; i++) {
-            str+=array[i];
-            if(i<pointer-1){
-                str+=",";
+            str += array[i];
+            if (i < pointer - 1) {
+                str += ",";
             }
         }
-        str+="]";
+        str += "]";
         return str;
     }
 
