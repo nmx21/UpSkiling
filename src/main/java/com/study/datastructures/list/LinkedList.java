@@ -269,4 +269,23 @@ public class LinkedList implements List {
         str.append("]");
         return str.toString();
     }
+
+    static class Node {
+        Object value;
+        Node next;
+        Node prev;
+
+        private Node(Object object) {
+            this.value = object;
+        }
+
+        private String toString(com.study.datastructures.list.Node node) {
+            String str = "[";
+            str += node.value;
+            str += "]";
+            return str;
+
+        }
+
+    }
 }

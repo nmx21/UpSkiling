@@ -16,14 +16,6 @@ public class LinkedListTest {
         Assert.assertEquals("[A,B,C]", linkedList.toString());
         linkedList.add(null);
         Assert.assertEquals(4, linkedList.capacity);
-        ///////
-        linkedList.clear();
-        long startTime = System.nanoTime();
-        for (int i = 0; i < 100000; i++) {
-            linkedList.add(i);
-        }
-        System.out.println((System.nanoTime() - startTime) / 1000000000.0);
-
     }
 
     @Test
@@ -39,12 +31,6 @@ public class LinkedListTest {
         Assert.assertEquals("[C,Z,B,D,A]", linkedList.toString());
         linkedList.add(null, 2);
         Assert.assertEquals(6, linkedList.capacity);
-
-        long startTime = System.nanoTime();
-        for (int i = 0; i < 100000; i++) {
-            linkedList.add(i, i + 1);
-        }
-        System.out.println((System.nanoTime() - startTime) / 1000000000.0);
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
