@@ -69,6 +69,7 @@ public class ArrayList implements List {
     }
 
     public boolean contains(Object value) {
+        // with indexOff
         if (pointer > 0) {
             for (int i = 0; i < pointer; i++) {
                 if (array[i].equals(value)) {
