@@ -7,8 +7,8 @@ import java.util.Objects;
 
 public class HashMap implements Map {
     private static final int DEFAULT_CAPACITY = 5;
-    List[] buckets;
-    int size;
+    private List[] buckets;
+    private int size;
 
 
     public HashMap() {
@@ -85,7 +85,7 @@ public class HashMap implements Map {
 
     private int getBucketIndex(Entry entry) {
         int hash = entry.hashCode();
-        return hash % DEFAULT_CAPACITY;
+        return Math.abs(hash) % DEFAULT_CAPACITY;
     }
 
     private static class Entry {
@@ -96,7 +96,7 @@ public class HashMap implements Map {
             this.key = key;
             this.value = value;
         }
-
+    
         private Entry(Object key) {
             this.key = key;
 
