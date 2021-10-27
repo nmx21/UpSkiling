@@ -18,6 +18,5 @@ class HashMapTest {
         Assert.assertNull(map.remove("someKeyNotExist"));
         Assert.assertEquals("Tolik",map.remove("user"));
         Assert.assertEquals(1, map.size());
-
     }
 }
