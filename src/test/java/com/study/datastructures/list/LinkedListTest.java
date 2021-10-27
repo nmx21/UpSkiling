@@ -8,7 +8,7 @@ public class LinkedListTest {
 
     @Test
     public void add() {
-        LinkedList linkedList = new LinkedList();
+        LinkedList<String> linkedList = new LinkedList<>();
         linkedList.add("A");
         linkedList.add("B");
         linkedList.add("C");
@@ -20,7 +20,7 @@ public class LinkedListTest {
 
     @Test
     public void testAddByIndex() {
-        LinkedList linkedList = new LinkedList();
+        LinkedList<String> linkedList = new LinkedList<>();
         linkedList.add("A", 0);
         linkedList.add("B", 0);
         linkedList.add("C", 0);
@@ -35,7 +35,7 @@ public class LinkedListTest {
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void removeExp() {
-        LinkedList linkedList = new LinkedList();
+        LinkedList<String> linkedList = new LinkedList<>();
         linkedList.add("A");
         linkedList.add("B");
         linkedList.add("C");
@@ -44,7 +44,7 @@ public class LinkedListTest {
 
     @Test
     public void remove() {
-        LinkedList linkedList = new LinkedList();
+        LinkedList<String> linkedList = new LinkedList<>();
         linkedList.add("A");
         linkedList.add("B");
         linkedList.add("C");
@@ -58,7 +58,7 @@ public class LinkedListTest {
 
     @Test
     public void get() {
-        LinkedList linkedList = new LinkedList();
+        LinkedList<String> linkedList = new LinkedList<>();
         linkedList.add("A");
         linkedList.add("B");
         linkedList.add("C");
@@ -71,7 +71,7 @@ public class LinkedListTest {
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void getExp() {
-        LinkedList linkedList = new LinkedList();
+        LinkedList<String> linkedList = new LinkedList<>();
         linkedList.add("A");
         linkedList.add("B");
         linkedList.add("C");
@@ -81,7 +81,7 @@ public class LinkedListTest {
 
     @Test
     public void set() {
-        LinkedList linkedList = new LinkedList();
+        LinkedList<String> linkedList = new LinkedList<>();
         linkedList.add("A");
         linkedList.add("B");
         linkedList.add("C");
@@ -94,7 +94,7 @@ public class LinkedListTest {
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void setExp() {
-        LinkedList linkedList = new LinkedList();
+        LinkedList<String> linkedList = new LinkedList<>();
         linkedList.add("A");
         linkedList.add("B");
         linkedList.add("C");
@@ -103,7 +103,7 @@ public class LinkedListTest {
 
     @Test
     public void clear() {
-        LinkedList linkedList = new LinkedList();
+        LinkedList<String> linkedList = new LinkedList<>();
         linkedList.add("A");
         linkedList.add("B");
         linkedList.add("C");
@@ -113,7 +113,7 @@ public class LinkedListTest {
 
     @Test
     public void size() {
-        LinkedList linkedList = new LinkedList();
+        LinkedList<String> linkedList = new LinkedList<>();
         linkedList.add("A");
         linkedList.add("B");
         linkedList.add("C");
@@ -126,7 +126,7 @@ public class LinkedListTest {
 
     @Test
     public void isEmpty() {
-        LinkedList linkedList = new LinkedList();
+        LinkedList<String> linkedList = new LinkedList<>();
         Assert.assertTrue(linkedList.isEmpty());
         linkedList.add("A");
         linkedList.add("B");
@@ -135,7 +135,7 @@ public class LinkedListTest {
 
     @Test
     public void contains() {
-        LinkedList linkedList = new LinkedList();
+        LinkedList<String> linkedList = new LinkedList<>();
         linkedList.add("A");
         linkedList.add("B");
         linkedList.add("C");
@@ -147,7 +147,7 @@ public class LinkedListTest {
 
     @Test
     public void indexOf() {
-        LinkedList linkedList = new LinkedList();
+        LinkedList<String> linkedList = new LinkedList<>();
         linkedList.add("A");
         linkedList.add("B");
         linkedList.add("C");
@@ -159,7 +159,7 @@ public class LinkedListTest {
 
     @Test
     public void lastIndexOf() {
-        LinkedList linkedList = new LinkedList();
+        LinkedList<String> linkedList = new LinkedList<>();
         linkedList.add("A");
         linkedList.add("B");
         linkedList.add("C");
@@ -173,7 +173,7 @@ public class LinkedListTest {
 
     @Test
     public void testToString() {
-        LinkedList linkedList = new LinkedList();
+        LinkedList<String> linkedList = new LinkedList<>();
         Assert.assertEquals("[]", linkedList.toString());
         linkedList.add("A", 0);
         Assert.assertEquals("[A]", linkedList.toString());

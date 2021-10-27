@@ -1,18 +1,18 @@
 package com.study.datastructures.list;
 
-public class ArrayList implements List {
+public class  ArrayList <T> implements List <T> {
     private static final int INIT_SIZE = 10;
-    Object[] array = new Object[INIT_SIZE];
+    T[] array = (T[]) new Object[INIT_SIZE];
     private int pointer = 0;
 
-    public void add(Object value) {
+    public void add(T value) {
         if (pointer >= array.length) {
             resize(array.length * 2);
         }
         array[pointer++] = value;
     }
 
-    public void add(Object value, int index) {
+    public void add(T value, int index) {
         if (index >= pointer || index < 0) {
             throw new IndexOutOfBoundsException("ADD. Index should be between 0 and " + pointer + ". You entered the index value " + index + ". Sorry...");
         }
@@ -26,26 +26,28 @@ public class ArrayList implements List {
         array[index] = value;
     }
 
-    public Object remove(int index) {
+    public T remove(int index) {
+
         if (index >= pointer || index < 0) {
             throw new IndexOutOfBoundsException("REMOVE. Index should be between 0 and " + (pointer - 1) + ". You entered the index value " + index + ". Sorry...");
         }
+        T deletedValue = array[index];
         for (int i = index; i < pointer - 1; i++) {
             array[i] = array[i + 1];
         }
         pointer--;
         resize(array.length - 1);
-        return array;
+        return deletedValue;
     }
 
-    public Object get(int index) {
+    public T get(int index) {
         if (index >= pointer || index < 0) {
             throw new IndexOutOfBoundsException("GET. Index should be between 0 and " + (pointer - 1) + ". You entered the index value " + index + ". Sorry...");
         }
         return array[index];
     }
 
-    public Object set(Object value, int index) {
+    public T set(T value, int index) {
         if (index >= pointer || index < 0) {
             throw new IndexOutOfBoundsException("SET. Index should be between 0 and " + (pointer - 1) + ". You entered the index value " + index + ". Sorry...");
         }
@@ -68,7 +70,7 @@ public class ArrayList implements List {
         return pointer == 0;
     }
 
-    public boolean contains(Object value) {
+    public boolean contains(T value) {
         // with indexOff
         if (pointer > 0) {
             for (int i = 0; i < pointer; i++) {
@@ -80,7 +82,7 @@ public class ArrayList implements List {
         return false;
     }
 
-    public int indexOf(Object value) {
+    public int indexOf(T value) {
         if (pointer > 0) {
             for (int i = 0; i < pointer; i++) {
                 if (array[i].equals(value)) {
@@ -91,7 +93,7 @@ public class ArrayList implements List {
         return -1;
     }
 
-    public int lastIndexOf(Object value) {
+    public int lastIndexOf(T value) {
         int marker = -1;
         if (pointer > 0) {
             for (int i = 0; i < pointer; i++) {
@@ -105,19 +107,19 @@ public class ArrayList implements List {
 
     @Override
     public String toString() {
-        String str = "[";
+        StringBuilder str = new StringBuilder("[");
         for (int i = 0; i < pointer; i++) {
-            str += array[i];
+            str.append(array[i]);
             if (i < pointer - 1) {
-                str += ",";
+                str.append(",");
             }
         }
-        str += "]";
-        return str;
+        str.append("]");
+        return str.toString();
     }
 
     private void resize(int newLength) {
-        Object[] newArray = new Object[newLength];
+        T[] newArray = (T[]) new Object[newLength];
         System.arraycopy(array, 0, newArray, 0, pointer);
         array = newArray;
     }

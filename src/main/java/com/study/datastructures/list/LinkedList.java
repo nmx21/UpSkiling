@@ -1,44 +1,44 @@
 package com.study.datastructures.list;
 
 
-public class LinkedList implements List {
-    Node head = null;
-    Node tail = null;
-    Node tempNode;
+public class  LinkedList<E> implements List<E> {
+    Node<E> head = null;
+    Node<E> tail = null;
+    Node<E> tempNode;
     int capacity = 0;
 
 
     @Override
-    public void add(Object value) {
+    public void add(E value) {
         if (head == null) {
-            head = new Node(value);
+            head = new Node<>(value);
             capacity++;
         } else {
-            Node tempNode = head;
+            Node<E> tempNode = head;
             while (tempNode.next != null) {
                 tempNode = tempNode.next;
             }
             capacity++;
-            tempNode.next = new Node(value);
+            tempNode.next = new Node<>(value);
             tail = tempNode.next;
             tail.prev = tempNode;
         }
     }
 
     @Override
-    public void add(Object value, int index) {
+    public void add(E value, int index) {
         // TODO list/2
-        Node nodeAfter;
+        Node<E> nodeAfter;
         if (index > capacity) {
             throw new IndexOutOfBoundsException("ADD by Index. LinkedList is empty. Try insert with index 0. Sorry...");
         }
         if (capacity == 0) {
-            head = new Node(value);
+            head = new Node<>(value);
             capacity++;
         } else {
             if (index == 0) {
                 tempNode = head;
-                head = new Node(value);
+                head = new Node<>(value);
                 head.next = tempNode;
                 head.next.prev = head;
                 capacity++;
@@ -49,7 +49,7 @@ public class LinkedList implements List {
                 while (tempNode.next != null) {
                     tempNode = tempNode.next;
                 }
-                tempNode.next = new Node(value);
+                tempNode.next = new Node<>(value);
                 tempNode.next.prev = tempNode;
                 tail = tempNode.next;
                 capacity++;
@@ -59,11 +59,11 @@ public class LinkedList implements List {
                     if (i == index) {
                         if (index != capacity - 1) {
                             nodeAfter = tempNode.next;
-                            tempNode.next = new Node(tempNode.value);
+                            tempNode.next = new Node<>(tempNode.value);
                             tempNode.next.next = nodeAfter;
                             tempNode.value = value;
                         } else {
-                            tempNode.next = new Node(tempNode.value);
+                            tempNode.next = new Node<>(tempNode.value);
                             tempNode.value = value;
                             tail = tempNode.next;
                         }
@@ -79,10 +79,10 @@ public class LinkedList implements List {
 
 
     @Override
-    public Object remove(int index) {
+    public E remove(int index) {
         // TODO list/2
         int temp_index = 0;
-        Node bufNode;
+        Node<E> bufNode;
         if (index >= capacity) {
             throw new IndexOutOfBoundsException("REMOVE by Index. Index (" + index + ") is biggest from length (" + capacity + ") of LinkedList . Sorry...");
         }
@@ -98,13 +98,13 @@ public class LinkedList implements List {
                     tail = null;
                     capacity--;
 
-                    return bufNode;
+                    return (E) bufNode.value;
                 } else {
                     tempNode = head;
                     head = head.next;
                     head.prev = null;
                     capacity--;
-                    return tempNode;
+                    return (E) tempNode.value;
                 }
             }
 
@@ -112,7 +112,7 @@ public class LinkedList implements List {
                 tail = tail.prev;
                 tail.next = null;
                 capacity--;
-                return tail;
+                return tail.value;
             } else {
                 tempNode = head;
                 while (tempNode.next != null) {
@@ -120,7 +120,7 @@ public class LinkedList implements List {
                         bufNode = tempNode.next;
                         tempNode.next = tempNode.next.next;
                         tempNode.next.prev = tempNode;
-                        return bufNode;
+                        return bufNode.value;
                     }
                     tempNode = tempNode.next;
                 }
@@ -130,7 +130,7 @@ public class LinkedList implements List {
     }
 
     @Override
-    public Object get(int index) {
+    public E get(int index) {
         // TODO list/2
         if (head == null) {
             throw new IndexOutOfBoundsException("GET by Index. LinkedList is empty. Try insert with index 0. Sorry...");
@@ -139,7 +139,7 @@ public class LinkedList implements List {
         if (index >= capacity) {
             throw new IndexOutOfBoundsException("GET by Index. Index (" + index + ") is biggest from length (" + capacity + ") of LinkedList . Sorry...");
         }
-        Node tempNode = head;
+        Node<E> tempNode = head;
         for (int i = 0; i <= index; i++) {
             if (i == index) {
                 return tempNode.value;
@@ -150,7 +150,7 @@ public class LinkedList implements List {
     }
 
     @Override
-    public Object set(Object value, int index) {
+    public E set(E value, int index) {
         // TODO list/2
         if (head == null) {
             throw new IndexOutOfBoundsException("SET by Index. LinkedList is empty. Try insert with index 0. Sorry...");
@@ -187,17 +187,17 @@ public class LinkedList implements List {
     }
 
     @Override
-    public boolean contains(Object value) {
+    public boolean contains(E value) {
         // TODO list/2
         if (head != null) {
             {
-                Node tempNode = head;
-                if (tempNode.value.toString() == value) {
+                Node<E> tempNode = head;
+                if (tempNode.value.equals(value)) {
                     return true;
                 }
                 while (tempNode.next != null) {
                     tempNode = tempNode.next;
-                    if (tempNode.value.toString() == value) {
+                    if (tempNode.value.equals(value)) {
                         return true;
                     }
                 }
@@ -207,19 +207,19 @@ public class LinkedList implements List {
     }
 
     @Override
-    public int indexOf(Object value) {
+    public int indexOf(E value) {
         // TODO list/2
         int indexNode = 0;
         if (head != null) {
             {
-                Node tempNode = head;
-                if (tempNode.value.toString() == value) {
+                Node<E> tempNode = head;
+                if (tempNode.value.equals(value)) {
                     return indexNode;
                 }
                 while (tempNode.next != null) {
                     tempNode = tempNode.next;
                     indexNode++;
-                    if (tempNode.value.toString() == value) {
+                    if (tempNode.value.equals(value)) {
                         return indexNode;
                     }
                 }
@@ -229,19 +229,19 @@ public class LinkedList implements List {
     }
 
     @Override
-    public int lastIndexOf(Object value) {
+    public int lastIndexOf(E value) {
         int indexNode = 0;
         int lastIndexNode = -1;
         if (head != null) {
             {
-                Node tempNode = head;
-                if (tempNode.value.toString() == value) {
+                Node<E> tempNode = head;
+                if (tempNode.value.equals(value)) {
                     lastIndexNode = indexNode;
                 }
                 while (tempNode.next != null) {
                     tempNode = tempNode.next;
                     indexNode++;
-                    if (tempNode.value.toString() == value) {
+                    if (tempNode.value.equals(value)) {
                         lastIndexNode = indexNode;
                     }
                 }
@@ -254,7 +254,7 @@ public class LinkedList implements List {
     public String toString() {
         StringBuilder str = new StringBuilder("[");
         if (capacity > 0) {
-            Node tempNode = head;
+            Node<E> tempNode = head;
             str.append(tempNode.value.toString());
 
             while (tempNode.next != null) {
@@ -270,16 +270,16 @@ public class LinkedList implements List {
         return str.toString();
     }
 
-    static class Node {
-        Object value;
-        Node next;
-        Node prev;
+    static class Node<E> {
+        E value;
+        Node<E> next;
+        Node<E> prev;
 
-        private Node(Object object) {
+        private Node(E object) {
             this.value = object;
         }
 
-        private String toString(com.study.datastructures.list.Node node) {
+        private String toString(Node<E> node) {
             String str = "[";
             str += node.value;
             str += "]";
