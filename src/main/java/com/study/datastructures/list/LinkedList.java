@@ -188,22 +188,7 @@ public class  LinkedList<E> implements List<E> {
 
     @Override
     public boolean contains(E value) {
-        // TODO list/2
-        if (head != null) {
-            {
-                Node<E> tempNode = head;
-                if (tempNode.value.equals(value)) {
-                    return true;
-                }
-                while (tempNode.next != null) {
-                    tempNode = tempNode.next;
-                    if (tempNode.value.equals(value)) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
+       return indexOf(value)>-1;
     }
 
     @Override

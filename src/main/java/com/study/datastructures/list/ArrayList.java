@@ -71,15 +71,7 @@ public class  ArrayList <T> implements List <T> {
     }
 
     public boolean contains(T value) {
-        // with indexOff
-        if (pointer > 0) {
-            for (int i = 0; i < pointer; i++) {
-                if (array[i].equals(value)) {
-                    return true;
-                }
-            }
-        }
-        return false;
+       return indexOf(value)>-1;
     }
 
     public int indexOf(T value) {
