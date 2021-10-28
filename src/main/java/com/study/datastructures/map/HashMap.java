@@ -7,7 +7,8 @@ import java.util.Objects;
 
 public class HashMap<K, V> implements Map<K, V> {
     private static final int DEFAULT_CAPACITY = 5;
-    private final List<Entry<K,V>>[] buckets;
+    private int capacity = DEFAULT_CAPACITY;
+    private  List<Entry<K,V>>[] buckets;
     private int size;
 
 
@@ -19,6 +20,9 @@ public class HashMap<K, V> implements Map<K, V> {
     @Override
     public V put(K key, V value) {
         Entry<K,V> entry = new Entry<>(key, value);
+        if(size>buckets.length*0.75){
+            buckets = resizeBuckets(buckets);
+        }
         int bucketIndex = getBucketIndex(entry);
         if (buckets[bucketIndex] == null) {
             buckets[bucketIndex] = new ArrayList<>();
@@ -34,6 +38,33 @@ public class HashMap<K, V> implements Map<K, V> {
             size++;
         }
         return null;
+    }
+
+    private ArrayList<Entry<K,V>>[] resizeBuckets(List<Entry<K,V>>[] buckets) {
+        capacity*=2;
+        //int newSize=0;
+        ArrayList<Entry<K,V>>[] newBuckets = new ArrayList[capacity];
+
+        for (int i = 0; i < buckets.length; i++) {
+            if(buckets[i]!=null){
+                for (int j = 0; j < buckets[i].size(); j++) {
+                    int newBucketIndex = getBucketIndex(buckets[i].get(j));
+                    if (newBuckets[newBucketIndex] == null) {
+                        newBuckets[newBucketIndex] = new ArrayList<>();
+                        newBuckets[newBucketIndex].add(buckets[i].get(j));
+          //              newSize++;
+                    } else if (newBuckets[newBucketIndex].contains(buckets[i].get(j))) {
+                        int index = newBuckets[newBucketIndex].indexOf(buckets[i].get(j));
+                        newBuckets[newBucketIndex].set(buckets[i].get(j), index);
+
+                    } else {
+                        newBuckets[newBucketIndex].add(buckets[i].get(j));
+            //            newSize++;
+                    }
+                }
+            }
+        }
+        return newBuckets;
     }
 
     @Override
@@ -84,7 +115,7 @@ public class HashMap<K, V> implements Map<K, V> {
 
     private int getBucketIndex(Entry<K, V> entry) {
         int hash = entry.hashCode();
-        return Math.abs(hash) % DEFAULT_CAPACITY;
+        return Math.abs(hash) % capacity;
     }
 
     private static class Entry<K, V> {
