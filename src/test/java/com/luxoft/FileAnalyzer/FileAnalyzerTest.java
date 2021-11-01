@@ -1,18 +1,15 @@
 package com.luxoft.FileAnalyzer;
 
-import com.study.datastructures.list.ArrayList;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 
 class FileAnalyzerTest {
 
-    //    String path = "/home/maks/test.txt";
-//    String word = "I";
-//    FileAnalyzer fa = new FileAnalyzer(path, word);
-//        fa.startFindWord(path);
+
     @Test
     void startFindWord() {
+        // TODO
         String path = "/home/maks/test.txt";
         String word = "I";
         FileAnalyzer fileAnalyzer = new FileAnalyzer(path, word);
@@ -21,10 +18,18 @@ class FileAnalyzerTest {
 
     @Test
     void splitSentencesInText() {
+        // TODO
     }
 
     @Test
     void isWordInSentences() {
+        String path = "/home/maks/test.txt";
+        String word = "I";
+        FileAnalyzer fileAnalyzer = new FileAnalyzer(path, word);
+        String someText = "Halloween is both the scariest and funniest holiday of the year. It is celebrated on the night of October 31 to November 1 and has very long roots. It is believed that Halloween comes from the Celtic festival of the evil spirits of Samhain.";
+        Assert.assertEquals(true,fileAnalyzer.isWordInSentences(someText));
+        Assert.assertEquals(false,fileAnalyzer.isWordInSentences("123"));
+
     }
 
     @Test
