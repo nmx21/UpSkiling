@@ -27,8 +27,8 @@ class FileAnalyzerTest {
         String word = "I";
         FileAnalyzer fileAnalyzer = new FileAnalyzer(path, word);
         String someText = "Halloween is both the scariest and funniest holiday of the year. It is celebrated on the night of October 31 to November 1 and has very long roots. It is believed that Halloween comes from the Celtic festival of the evil spirits of Samhain.";
-        Assert.assertEquals(true,fileAnalyzer.isWordInSentences(someText));
-        Assert.assertEquals(false,fileAnalyzer.isWordInSentences("123"));
+        Assert.assertTrue(fileAnalyzer.isWordInSentences(someText));
+        Assert.assertFalse(fileAnalyzer.isWordInSentences("123"));
 
     }
 
@@ -43,7 +43,7 @@ class FileAnalyzerTest {
 
     @Test
     void getCountWordInText(String someText) {
-        someText = "Halloween is both the scariest and funniest holiday of the year. It is celebrated on the night of October 31 to November 1 and has very long roots. It is believed that Halloween comes from the Celtic festival of the evil spirits of Samhain.";
+        //someText = "Halloween is both the scariest and funniest holiday of the year. It is celebrated on the night of October 31 to November 1 and has very long roots. It is believed that Halloween comes from the Celtic festival of the evil spirits of Samhain.";
         //Assert.assertEquals(16,getCountWordInText(someText));
 
 
@@ -73,7 +73,7 @@ class FileAnalyzerTest {
         String word = null;
         FileAnalyzer fileAnalyzer = new FileAnalyzer(path, word);
         fileAnalyzer.setWord(word);
-        Assert.assertEquals(null, fileAnalyzer.getWord());
+        Assert.assertNull(fileAnalyzer.getWord());
     }
 
     @Test
