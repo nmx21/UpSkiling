@@ -1,9 +1,8 @@
 package com.study.datastructures.list;
 
 
-import org.junit.Assert;
+import junit.framework.Assert;
 import org.junit.Test;
-
 
 
 public class ArrayListTest {
@@ -14,6 +13,7 @@ public class ArrayListTest {
         arrayList.add("A");
         arrayList.add("B");
         arrayList.add("C");
+
         Assert.assertEquals(3, arrayList.size());
         arrayList.clear();
         long startTime = System.nanoTime();
@@ -42,7 +42,7 @@ public class ArrayListTest {
         arrayList.add("A");
         arrayList.add("B");
         arrayList.add("C");
-        Assert.assertEquals("B",arrayList.remove(1));
+        Assert.assertEquals("B", arrayList.remove(1));
         Assert.assertEquals(2, arrayList.size());
         Assert.assertEquals("C", arrayList.get(1));
 

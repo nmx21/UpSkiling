@@ -1,6 +1,11 @@
 package com.study.datastructures.list;
 
-public class  ArrayList <T> implements List <T> {
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.Spliterator;
+import java.util.function.Consumer;
+
+public class  ArrayList <T> implements Iterable<T> {
     private static final int INIT_SIZE = 10;
     T[] array = (T[]) new Object[INIT_SIZE];
     private int pointer = 0;
@@ -114,5 +119,30 @@ public class  ArrayList <T> implements List <T> {
         T[] newArray = (T[]) new Object[newLength];
         System.arraycopy(array, 0, newArray, 0, pointer);
         array = newArray;
+    }
+
+
+    @Override
+    public Iterator<T> iterator() {
+        Iterator<T> it = new Iterator<T>() {
+
+            private int currentIndex = 0;
+
+            @Override
+            public boolean hasNext() {
+                return currentIndex < size() && array[currentIndex] != null;
+            }
+
+            @Override
+            public T next() {
+                return array[currentIndex++];
+            }
+
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException();
+            }
+        };
+        return it;
     }
 }
