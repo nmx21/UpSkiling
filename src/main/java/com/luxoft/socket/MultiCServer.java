@@ -7,7 +7,8 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class MultiCServer {
-    private static final int PORT = 3000;
+    private static final int PORT = 3002;
+
     public static void main(String[] args) throws IOException {
 
         ServerSocket serverSocket = new ServerSocket(PORT);
