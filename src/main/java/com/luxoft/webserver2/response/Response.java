@@ -1,12 +1,16 @@
-package com.luxoft.webserver2;
+package com.luxoft.webserver2.response;
 
 public class Response {
     private String httpHeader;
     private String content;
 
-    public Response(String httpHeader, String content) {
-        this.httpHeader = httpHeader;
+    public Response(String StringOfHttpStatusResponse, String content) {
+        this.httpHeader = StringOfHttpStatusResponse;
         this.content = content;
+    }
+
+    public Response(String httpHeader) {
+        this.httpHeader = httpHeader;
     }
 
     public String getHttpHeader() {

@@ -1,4 +1,6 @@
-package com.luxoft.webserver2;
+package com.luxoft.webserver2.request;
+
+import com.luxoft.webserver2.enums.HttpMethod;
 
 import java.util.Map;
 
@@ -6,6 +8,16 @@ public class Request {
     private String uri;
     private Map<String, String> headers;
     private HttpMethod method;
+    private String httpResultCode;
+
+    public String getHttpResultCode() {
+        return httpResultCode;
+    }
+
+    public void setHttpResultCode(String httpResultCode) {
+        this.httpResultCode = httpResultCode;
+    }
+
 
     @Override
     public String toString() {
