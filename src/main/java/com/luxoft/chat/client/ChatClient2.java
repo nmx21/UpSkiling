@@ -8,7 +8,7 @@ import java.net.UnknownHostException;
 import java.util.Scanner;
 
 
-class ChatClient implements Runnable {
+class ChatClient2 implements Runnable {
     private Socket socket;
     private PrintWriter outputStream;
     private Scanner scannerInputStream;
@@ -17,7 +17,7 @@ class ChatClient implements Runnable {
     private boolean stopWork;
 
 
-    public ChatClient() throws IOException {
+    public ChatClient2() throws IOException {
         initialize();
     }
 
@@ -69,7 +69,7 @@ class ChatClient implements Runnable {
     }
 
     public static void main(String[] args) throws Exception {
-        new ChatClient();
+        new ChatClient2();
     }
 
 
