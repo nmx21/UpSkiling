@@ -5,24 +5,24 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ChatServer {
     private static final int PORT = 3005;
     private ServerSocket serverSocket;
-    private ArrayList<Socket> ListOfClient;
+    private final ArrayList<Socket> ListOfClient;
 
 
-    public ChatServer() {
+    private ChatServer() {
         try {
             serverSocket = new ServerSocket(PORT);
-            serverSocket.setReuseAddress(true);
         } catch (IOException e) {
-            System.out.println(e.getStackTrace());
+            e.getStackTrace();
         }
         ListOfClient = new ArrayList<>();
     }
 
-    public void StartServer() {
+    private void StartServer() {
         System.out.println("Accept clients...");
         while (true) {
             try {

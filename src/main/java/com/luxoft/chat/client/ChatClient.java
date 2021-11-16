@@ -35,34 +35,17 @@ class ChatClient implements Runnable {
 
         System.out.println("What is your nick?");
         userLogin = readerFromUser.next();
-
-        InetAddress host;
-        try {
-            host = InetAddress.getByName(ip_server);
-            System.out.println("You are now connected to: " + host.getHostAddress());
-
-            socket = null;
             try {
-                socket = new Socket(host, port);
-                socket.setReuseAddress(true);
-
-
+                socket = new Socket(ip_server, port);
                 scannerInputStream = new Scanner(socket.getInputStream());
                 outputStream = new PrintWriter(socket.getOutputStream());
                 sendMessageToServer(JsonManager.Encode("enter", "", userLogin, ""));
-
                 Thread t = new Thread(this::run);
                 t.start();
                 startScanUserInput();
-
-
-            } catch (UnknownHostException e1) {
-                System.out.println("Host not found");
+            } catch (UnknownHostException e) {
+                e.printStackTrace();
             }
-
-        } catch (UnknownHostException e1) {
-            System.out.println("error");
-        }
     }
 
     private void startScanUserInput() {
