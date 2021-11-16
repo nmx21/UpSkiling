@@ -19,7 +19,7 @@ public class ChatServer {
         } catch (IOException e) {
             System.out.println(e.getStackTrace());
         }
-        ListOfClient = new ArrayList<Socket>();
+        ListOfClient = new ArrayList<>();
     }
 
     public void StartServer() {
@@ -39,9 +39,14 @@ public class ChatServer {
         }
     }
 
-    public synchronized void sendChatMessageToAll(Object msg) throws IOException {
+    public synchronized void sendChatMessageToAll(Object msg, Socket socket, boolean isToClose) throws IOException {
+        if (isToClose) {
+            ListOfClient.remove(socket);
+            System.out.println("Total clients: " + ListOfClient.size());
+        }
         for (Socket client : ListOfClient) {
-            if (!client.isClosed()) {
+
+            if (client != socket) {
                 PrintWriter printWriter = new PrintWriter(client.getOutputStream());
                 printWriter.println(msg);
                 printWriter.flush();
