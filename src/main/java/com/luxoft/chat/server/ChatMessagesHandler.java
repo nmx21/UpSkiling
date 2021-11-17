@@ -7,18 +7,19 @@ import com.luxoft.chat.message.Message;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
+import java.util.function.Consumer;
 
 
-public class ChatMessagesDispatch implements Runnable {
-
+public class ChatMessagesHandler implements Runnable {
+    private static final Gson GSON = new Gson();
     private Socket clientSocket;
-    private ChatServer server;
+    private Consumer<ClientMessage> sendToClientCallback;
     private Scanner inputStream;
     private String messageToClient;
 
-    public ChatMessagesDispatch(Socket clientSocket, ChatServer server) {
+    public ChatMessagesHandler(Socket clientSocket, Consumer<ClientMessage> sendToClientCallback) {
         this.clientSocket = clientSocket;
-        this.server = server;
+        this.sendToClientCallback = sendToClientCallback;
     }
 
     @Override
@@ -29,9 +30,7 @@ public class ChatMessagesDispatch implements Runnable {
                 if (!inputStream.hasNext()) {
                     return;
                 }
-                GsonBuilder builder = new GsonBuilder();
-                Gson gson = builder.create();
-                Message msg = gson.fromJson(inputStream.nextLine(), Message.class);
+                Message msg = GSON.fromJson(inputStream.nextLine(), Message.class);
 
                 switch (msg.getTypeMessage()) {
                     case "send":
@@ -44,8 +43,10 @@ public class ChatMessagesDispatch implements Runnable {
                         messageToClient = "[ " + msg.getDateOfMessageSend() + " ] <" + msg.getClientName() + ">: In chat";
                         break;
                 }
-                server.sendChatMessageToAll(messageToClient, clientSocket, msg.getTypeMessage().equals("exit"));
-            }
+                boolean isExit = msg.getTypeMessage().equals("exit");
+                ClientMessage clientMessage = new ClientMessage(messageToClient,clientSocket,isExit);
+                sendToClientCallback.accept(clientMessage);
+             }
         } catch (IOException e) {
             e.printStackTrace();
         }

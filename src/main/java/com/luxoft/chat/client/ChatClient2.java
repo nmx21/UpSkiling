@@ -37,7 +37,7 @@ class ChatClient2 implements Runnable {
                 socket = new Socket(ip_server, port);
                 scannerInputStream = new Scanner(socket.getInputStream());
                 outputStream = new PrintWriter(socket.getOutputStream());
-                sendMessageToServer(JsonManager.Encode("enter", "", userLogin, ""));
+                sendMessageToServer(JsonManager.Encode("enter", "", userLogin));
                 Thread t = new Thread(this::run);
                 t.start();
                 startScanUserInput();
@@ -50,11 +50,11 @@ class ChatClient2 implements Runnable {
         while (readerFromUser.hasNextLine()) {
             String msg = readerFromUser.nextLine();
             if ("exit".equalsIgnoreCase(msg)) {
-                sendMessageToServer(JsonManager.Encode("exit", msg, userLogin, ""));
+                sendMessageToServer(JsonManager.Encode("exit", msg, userLogin));
                 stopWork = true;
                 break;
             } else if (!msg.equals("")) {
-                sendMessageToServer(JsonManager.Encode("send", msg, userLogin, ""));
+                sendMessageToServer(JsonManager.Encode("send", msg, userLogin));
             }
         }
     }
